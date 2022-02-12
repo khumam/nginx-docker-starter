@@ -1,0 +1,31 @@
+version: '3'
+
+networks:
+  mariadb_default:
+    external: true
+
+services:
+  nginx: 
+    image: nginx:stable-alpine
+    container_name: nginx_localhost
+    ports:
+      - "8000:80"
+    volumes:
+      - ./src:/var/www
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+      - mariadb
+    networks:
+      - mariadb_default
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php_localhost
+    volumes:
+      - ./src:/var/www
+    ports:
+      - "9000:9000"
+    networks:
+      - mariadb_default
