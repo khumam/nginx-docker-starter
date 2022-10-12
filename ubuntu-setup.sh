@@ -22,4 +22,4 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 echo "Installing PHP lib"
-sudo apt-get install php-mysql php-mbstring php-zip
+sudo apt-get install php-mysql php-mbstring php-zip php-simplexml php-dom php-gd
